@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gym Stone Club — Membership sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap">
+<style>
+  doc-page:not(:defined){visibility:hidden}
+
+  :root{
+    --stone:#131110;
+    --stone-mid:#3a3430;
+    --bone:#f4efe7;
+    --paper:#fbf8f3;
+    --rule:2px solid #131110;
+    --hair:1px solid #cdc5b8;
+    --red:#c8102e;
+    --grey:#6b6359;
+    --en:'Archivo','Arial Narrow',Helvetica,sans-serif;
+    --ar:'IBM Plex Sans Arabic','Noto Kufi Arabic',sans-serif;
+  }
+
+  .page{
+    box-sizing:border-box;
+    padding:0.5in;
+    background:var(--paper);
+    color:var(--stone);
+    font-family:var(--en);
+    font-size:10.5pt;
+    line-height:1.45;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .page *{box-sizing:border-box}
+  .ar{font-family:var(--ar);direction:rtl;unicode-bidi:isolate}
+
+  /* ---- masthead: the one red field ---- */
+  .mast{
+    background:var(--red);
+    color:var(--bone);
+    padding:18px 22px 16px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:end;
+    gap:12px;
+  }
+  .mast .brand{
+    font-weight:900;
+    font-stretch:105%;
+    font-size:31pt;
+    letter-spacing:-.02em;
+    line-height:.9;
+    display:flex;
+    align-items:center;
+    gap:.06em;
+  }
+  .mast .brand svg{inline-size:.78em;block-size:.78em;fill:currentColor;transform:translateY(-.02em)}
+  .mast .club{
+    font-size:.3em;font-weight:700;letter-spacing:.34em;
+    text-transform:uppercase;align-self:flex-end;padding-block-end:.42em;
+    padding-inline-start:.5em;opacity:.82;
+  }
+  .mast .kind{text-align:right;font-size:8pt;letter-spacing:.22em;text-transform:uppercase;font-weight:700;line-height:1.7}
+  .mast .kind .ar{letter-spacing:0;text-transform:none;font-size:9.5pt}
+
+  /* ---- shared section head ---- */
+  h2{
+    margin:0;
+    font-size:8pt;letter-spacing:.24em;text-transform:uppercase;font-weight:800;
+    color:var(--grey);
+    border-block-end:var(--rule);
+    padding-block-end:5px;
+  }
+  h2 span.ar{float:right;letter-spacing:0;text-transform:none;font-size:9pt;color:var(--stone-mid)}
+
+  /* ---- plans ---- */
+  .plans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-block-end:var(--rule)}
+  .plan{padding:12px 14px 14px;border-inline-end:var(--hair);display:flex;flex-direction:column;gap:4px}
+  .plan:last-child{border-inline-end:0}
+  .plan .term{font-weight:800;font-size:12.5pt;letter-spacing:-.01em}
+  .plan .term .ar{display:block;font-weight:600;font-size:9.5pt;color:var(--stone-mid)}
+  .plan .num{font-family:var(--en);font-size:24pt;font-weight:900;letter-spacing:-.03em;line-height:1;margin-block-start:auto}
+  .plan .num small{font-size:8.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);display:block;margin-block-start:3px}
+  .plan.set .num{color:var(--red)}
+  /* the desk writes the quote on the rule */
+  .plan .fill{margin-block-start:auto;border-block-end:var(--rule);block-size:30px}
+  .plan .fill + small{font-size:8.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);display:block;margin-block-start:3px}
+
+  /* ---- included register ---- */
+  .reg{list-style:none;margin:0;padding:0;column-count:2;column-gap:26px}
+  .reg li{
+    display:grid;grid-template-columns:22px 1fr;gap:8px;
+    padding-block:6px;border-block-end:var(--hair);
+    break-inside:avoid;
+  }
+  .reg .n{font-size:8pt;font-weight:800;color:var(--grey);padding-block-start:2px;font-variant-numeric:tabular-nums}
+  .reg b{font-weight:700;font-size:10.5pt;display:block}
+  .reg .ar{font-weight:400;font-size:9.5pt;color:var(--stone-mid);display:block}
+  .reg li.women .n,.reg li.women b{color:var(--red)}
+
+  /* ---- facts strip ---- */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);border-block:var(--rule);gap:0}
+  .facts div{padding:10px 14px 12px;border-inline-end:var(--hair)}
+  .facts div:last-child{border-inline-end:0}
+  .facts dt{font-size:7.5pt;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--grey);margin-block-end:3px}
+  .facts dd{margin:0;font-weight:700;font-size:10.5pt;line-height:1.3}
+  .facts dd .ar{display:block;font-weight:400;font-size:9pt;color:var(--stone-mid)}
+
+  /* ---- desk block ---- */
+  .desk{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-block-start:2px}
+  .lines{display:flex;flex-direction:column;gap:14px}
+  .line{border-block-end:var(--hair);padding-block-end:3px;display:flex;align-items:flex-end;gap:8px;min-block-size:26px}
+  .line span{font-size:7.5pt;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--grey);white-space:nowrap}
+  .note{
+    background:var(--stone);color:var(--bone);padding:14px 16px;
+    display:flex;flex-direction:column;gap:6px;justify-content:center;
+  }
+  .note b{font-size:11pt;font-weight:800;letter-spacing:-.01em}
+  .note p{margin:0;font-size:9pt;color:#c4bbae;line-height:1.5}
+  .note .ar{color:#c4bbae;font-size:9pt}
+
+  /* ---- foot ---- */
+  .foot{
+    margin-block-start:auto;
+    border-block-start:var(--rule);
+    padding-block-start:8px;
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--grey);
+    white-space:nowrap;
+  }
+  .foot > span:last-child{display:flex;gap:8px;align-items:baseline}
+  .foot .ar{letter-spacing:0;text-transform:none;font-size:8.5pt;color:var(--stone-mid)}
+  .foot em{font-style:normal;color:var(--red)}
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail" data-bg-color="#c8102e">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#c8102e"/>
+    <text x="120" y="380" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="150" fill="#f4efe7">GYM STONE</text>
+    <text x="120" y="500" font-family="Archivo, Arial, sans-serif" font-weight="700" font-size="72" letter-spacing="18" fill="#f4efe7">MEMBERSHIP</text>
+  </svg>
+</template>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="leaf" viewBox="0 0 100 100">
+    <path fill="currentColor" d="M50 4 56 19 68 11 66 29 90 23 81 39 98 49 73 57 80 72Q64 69 59 67L52 80 52 96 48 96 48 80 41 67Q36 69 20 72L27 57 2 49 19 39 10 23 34 29 32 11 44 19Z"/>
+  </symbol>
+</svg>
+
+<doc-page size="a4">
+<section class="page">
+
+  <div class="mast">
+    <p class="brand">G<svg aria-hidden="true" viewBox="0 0 100 100"><path fill="currentColor" d="M50 4 56 19 68 11 66 29 90 23 81 39 98 49 73 57 80 72Q64 69 59 67L52 80 52 96 48 96 48 80 41 67Q36 69 20 72L27 57 2 49 19 39 10 23 34 29 32 11 44 19Z"/></svg>M STONE<span class="club">club</span></p>
+    <p class="kind">Membership &amp; rates<br><span class="ar">العضوية والأسعار</span></p>
+  </div>
+
+  <div>
+    <h2>Rates <span class="ar">الأسعار</span></h2>
+    <div class="plans">
+      <div class="plan set">
+        <p class="term">Monthly<span class="ar">شهري</span></p>
+        <p class="num">6,500<small>SYP / month</small></p>
+      </div>
+      <div class="plan">
+        <p class="term">Three months<span class="ar">ثلاثة أشهر</span></p>
+        <div class="fill"></div>
+        <small>SYP / 3 months</small>
+      </div>
+      <div class="plan">
+        <p class="term">One year<span class="ar">سنة كاملة</span></p>
+        <div class="fill"></div>
+        <small>SYP / year</small>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2>Everything included <span class="ar">كل ما هو مشمول</span></h2>
+    <ul class="reg">
+      <li><span class="n">01</span><span><b>Free weights</b><span class="ar">الأوزان الحرة</span></span></li>
+      <li><span class="n">02</span><span><b>Machines</b><span class="ar">الأجهزة</span></span></li>
+      <li><span class="n">03</span><span><b>Cardio deck</b><span class="ar">منطقة الكارديو</span></span></li>
+      <li><span class="n">04</span><span><b>Coached classes</b><span class="ar">حصص بإشراف مدرب</span></span></li>
+      <li class="women"><span class="n">05</span><span><b>Women-only sessions</b><span class="ar">حصص للسيدات فقط</span></span></li>
+      <li><span class="n">06</span><span><b>Maple Café</b><span class="ar">مقهى مايبل</span></span></li>
+      <li><span class="n">07</span><span><b>Lockers &amp; showers</b><span class="ar">خزائن واستحمام</span></span></li>
+      <li><span class="n">08</span><span><b>No joining fee</b><span class="ar">دون رسوم انتساب</span></span></li>
+    </ul>
+  </div>
+
+  <dl class="facts">
+    <div>
+      <dt>Open</dt>
+      <dd>07:00 – 23:00<span class="ar">يومياً</span></dd>
+    </div>
+    <div>
+      <dt>Friday</dt>
+      <dd>10:00 – 20:00<span class="ar">الجمعة</span></dd>
+    </div>
+    <div>
+      <dt>Address</dt>
+      <dd>Chamstone, Malki<span class="ar">شام ستون، المالكي</span></dd>
+    </div>
+    <div>
+      <dt>Book online</dt>
+      <dd>fitcircleapp.com<span class="ar">أو في الاستقبال</span></dd>
+    </div>
+  </dl>
+
+  <div class="desk">
+    <div class="lines">
+      <p class="line"><span>Name / الاسم</span></p>
+      <p class="line"><span>Starts / يبدأ</span></p>
+      <p class="line"><span>Quoted by / بواسطة</span></p>
+    </div>
+    <div class="note">
+      <b>Walk in for a tour</b>
+      <p>No appointment and no trial form. Ask at the desk — you'll see the floor, the classes area and the café before anyone mentions a price.</p>
+      <p class="ar">بلا موعد وبلا استمارة. اسأل في الاستقبال — سترى الصالة ومنطقة الحصص والمقهى قبل أن يذكر أحد السعر.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Gym Stone Club · Chamstone, Malki · Damascus · @gymstone_gym</span>
+    <span><em>Stone upon stone.</em> <span class="ar">حجراً فوق حجر.</span></span>
+  </div>
+
+</section>
+</doc-page>
+
+<script src="doc-page.js"></script>
+</body>
+</html>

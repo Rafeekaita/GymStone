@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gym Stone Club — Instagram card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap">
+<style>
+  :root{
+    --stone:#131110;
+    --stone-700:#221e1c;
+    --bone:#f0eae0;
+    --bone-muted:#a89f92;
+    --red-field:#c8102e;
+    --red-ink:#ff6b78;
+    --red-500:#e5233c;
+    --en:'Archivo','Arial Narrow',Helvetica,sans-serif;
+    --ar:'IBM Plex Sans Arabic','Noto Kufi Arabic',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#2b2724;
+    min-block-size:100vh;
+    display:flex;flex-direction:column;align-items:center;
+    gap:28px;padding:40px 20px 60px;
+    font-family:var(--en);
+  }
+  .hint{
+    color:#a89f92;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    font-weight:700;text-align:center;line-height:1.9;
+  }
+  .ar{font-family:var(--ar);direction:rtl;unicode-bidi:isolate}
+
+  /* ---------- the card: 1080 × 1350 feed post ---------- */
+  .card{
+    inline-size:1080px;block-size:1350px;
+    position:relative;overflow:hidden;
+    background:var(--stone);color:var(--bone);
+    display:flex;flex-direction:column;
+    flex:none;
+    transform-origin:top center;
+  }
+  .card img{
+    position:absolute;inset:0;inline-size:100%;block-size:100%;
+    object-fit:cover;object-position:50% 100%;
+    filter:grayscale(1) contrast(1.14) brightness(.4);
+  }
+  /* the stone texture the site uses, sunk over the photo */
+  .card::before{
+    content:"";position:absolute;inset:0;
+    background:
+      repeating-linear-gradient(90deg,transparent 0 62px,rgba(0,0,0,.22) 62px 66px),
+      repeating-linear-gradient(0deg,transparent 0 62px,rgba(0,0,0,.22) 62px 66px);
+    mix-blend-mode:multiply;
+  }
+  .card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to bottom,rgba(19,17,16,.66) 0%,rgba(19,17,16,.3) 38%,rgba(19,17,16,.94) 100%);
+  }
+  .card > *{position:relative;z-index:2}
+
+  /* record strip */
+  .record{
+    display:flex;gap:0;border-block-end:2px solid rgba(240,234,224,.22);
+    font-size:19px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--bone-muted);
+  }
+  .record span{padding:30px 34px;border-inline-end:2px solid rgba(240,234,224,.14)}
+  .record span:last-child{border-inline-end:0}
+  .record .hi{color:var(--red-ink)}
+
+  .body{padding:64px 64px 0;flex:1;display:flex;flex-direction:column}
+
+  .leaf{
+    color:var(--red-field);
+    position:absolute;inset-block-start:150px;inset-inline-end:56px;
+    inline-size:190px;block-size:190px;fill:var(--red-field);opacity:.28;z-index:1;
+  }
+
+  h1{
+    font-weight:900;font-stretch:105%;letter-spacing:-.035em;line-height:.9;
+    font-size:131px;text-transform:none;
+    display:flex;flex-direction:column;
+  }
+  h1 .a,h1 .b{color:var(--red-500)}
+  h1 .b{padding-inline-start:.13em}
+  h1 .c{
+    color:var(--bone);display:inline-block;align-self:flex-start;
+    padding-inline:.03em;margin-inline-start:-.03em;
+    padding-block-end:.015em;
+    border-block-end:.13em solid var(--red-field);
+  }
+
+  .ar-line{
+    font-family:var(--ar);direction:rtl;
+    font-size:52px;font-weight:600;color:var(--bone-muted);
+    margin-block-start:34px;letter-spacing:0;
+    inline-size:fit-content;white-space:nowrap;
+  }
+
+  .sub{
+    margin-block-start:auto;
+    font-size:34px;line-height:1.45;color:var(--bone);
+    max-inline-size:30ch;font-weight:500;text-wrap:pretty;
+  }
+  .sub b{color:var(--red-ink);font-weight:700}
+
+  /* the one red field, at the base */
+  .strip{
+    margin-block-start:52px;
+    background:var(--red-field);color:var(--bone);
+    display:flex;justify-content:space-between;align-items:center;
+    padding:34px 64px;gap:24px;
+    font-size:26px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  }
+  .strip .ar{letter-spacing:0;text-transform:none;font-size:30px;font-weight:600}
+
+  .brand{
+    display:flex;align-items:center;gap:.05em;
+    font-size:52px;font-weight:900;font-stretch:105%;letter-spacing:-.02em;
+    padding:40px 64px 46px;
+  }
+  .brand svg{inline-size:.8em;block-size:.8em;color:var(--red-field);fill:var(--red-field)}
+  .brand .club{
+    font-size:.3em;font-weight:700;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--bone-muted);padding-inline-start:.6em;padding-block-start:.5em;
+  }
+  .brand .hours{
+    margin-inline-start:auto;font-size:.4em;font-weight:700;letter-spacing:.2em;
+    color:var(--bone-muted);text-align:right;line-height:1.5;
+  }
+
+  .fit{inline-size:100%;display:flex;justify-content:center}
+  .fit .card{transform:scale(var(--k,1));margin-block-end:calc((var(--k,1) - 1) * 1350px)}
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail" data-bg-color="#131110">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#131110"/>
+    <text x="110" y="360" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="140" fill="#e5233c">STRENGTH.</text>
+    <text x="110" y="500" font-family="Archivo, Arial, sans-serif" font-weight="900" font-size="140" fill="#f0eae0">RESULTS.</text>
+    <rect x="110" y="524" width="600" height="18" fill="#c8102e"/>
+  </svg>
+</template>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="leaf" viewBox="0 0 100 100">
+    <path fill="currentColor" d="M50 4 56 19 68 11 66 29 90 23 81 39 98 49 73 57 80 72Q64 69 59 67L52 80 52 96 48 96 48 80 41 67Q36 69 20 72L27 57 2 49 19 39 10 23 34 29 32 11 44 19Z"/>
+  </symbol>
+</svg>
+
+<div class="fit"><div class="card" id="card">
+  <img src="photo-floor.webp" alt="The weights floor at Gym Stone Club">
+  <svg class="leaf" aria-hidden="true" viewBox="0 0 100 100"><path fill="currentColor" d="M50 4 56 19 68 11 66 29 90 23 81 39 98 49 73 57 80 72Q64 69 59 67L52 80 52 96 48 96 48 80 41 67Q36 69 20 72L27 57 2 49 19 39 10 23 34 29 32 11 44 19Z"/></svg>
+
+  <p class="record">
+    <span>Malki · Chamstone</span>
+    <span class="hi">Record No. 01</span>
+    <span>Damascus</span>
+  </p>
+
+  <div class="body">
+    <h1>
+      <span class="a">Strength.</span>
+      <span class="b">Community.</span>
+      <span class="c">Results.</span>
+    </h1>
+    <p class="ar-line">قوّتك، حجراً فوق حجر.</p>
+    <p class="sub">Weights, cardio and coached classes — including <b>women-only sessions</b> — under one roof.</p>
+  </div>
+
+  <p class="strip">
+    <span>Walk in for a tour</span>
+    <span class="ar">زُرنا في جولة</span>
+  </p>
+
+  <p class="brand">
+    G<svg aria-hidden="true" viewBox="0 0 100 100"><path fill="currentColor" d="M50 4 56 19 68 11 66 29 90 23 81 39 98 49 73 57 80 72Q64 69 59 67L52 80 52 96 48 96 48 80 41 67Q36 69 20 72L27 57 2 49 19 39 10 23 34 29 32 11 44 19Z"/></svg>M STONE<span class="club">club</span>
+    <span class="hours">@gymstone_gym<br>Daily 07–23 · Fri 10–20</span>
+  </p>
+</div></div>
+
+<p class="hint">1080 × 1350 · feed post<br>Ask me to export it as a PNG</p>
+
+<script>
+  const fit = document.querySelector('.fit');
+  const set = () => fit.style.setProperty('--k', Math.min(1, (fit.clientWidth) / 1080));
+  addEventListener('resize', set); set();
+</script>
+</body>
+</html>
